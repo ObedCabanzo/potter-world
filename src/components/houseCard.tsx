@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { House } from ".././models/house";
-import { links } from "../data/links.js";
+import { linksMap } from "../data/links";
 import CustomButton from "./customButton";
 
 export default function HouseCard({ house }: { house: House }) {
@@ -12,9 +11,9 @@ export default function HouseCard({ house }: { house: House }) {
         <p>Colours: {house.houseColours}</p>
       </div>
       <CustomButton
-        url={`${links[1].url}/${house.id}`}
-        text={"Ver más"}
-        trackText={`btn-houseCard-${house.name}`}
+        url={`${linksMap["houses"].url}/${house.id}`}
+        text={"Learn More"}
+        trackText={`btn-house-${house.name}`}
         className="px-4 py-2 bg-black rounded-lg text-white hover:bg-gray-800 "
       />
     </div>

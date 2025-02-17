@@ -14,7 +14,7 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col gap-4 py-8 h-full w-full items-center justify-center ">
-      <h1 className="text-xl font-bold">Casas de Hogwarts</h1>
+      <h1 className="text-xl font-bold">Houses of Hogwarts</h1>
 
       {houses &&
         houses.map((house) => (
