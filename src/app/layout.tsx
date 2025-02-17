@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inria_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar";
+import { initializeAmplitude } from "@/analytics/amplitude";
+import ClientInitializer from "@/analytics/ClientInitializer";
 
 const InriaSans = Inria_Sans({
   variable: "--font-inria-sans",
@@ -11,7 +13,10 @@ const InriaSans = Inria_Sans({
 
 
 export const metadata: Metadata = {
-  title: "Potter's World",
+  title: {
+    default: "Potter's World",
+    template: "%s - Potter's World",
+  },
 };
 
 export default function RootLayout({
@@ -19,11 +24,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  initializeAmplitude();
   return (
     <html lang="en">
       <body
         className={`${InriaSans.variable}  antialiased`}
       >
+        <ClientInitializer />
         <Navbar/>
         {children}
       </body>

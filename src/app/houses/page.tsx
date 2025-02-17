@@ -1,21 +1,18 @@
-"use client";
-import { getAllHouses } from "../../lib/api/houseServices";
+import { Metadata } from "next";
 import { House } from "../../models/house";
 import HouseCard from "../../components/houseCard";
-import { useState, useEffect } from "react";
+import { getAllHouses } from "../../lib/api/houseServices";
+import { trackPageView } from "../../analytics/events";
 
-export default function HousesPage() {
-  const [houses, setHouses] = useState<House[] | undefined>([]);
-  const [state, setState] = useState("loading");
 
-  useEffect(() => {
-    getAllHouses()
-      .then((houses) => {
-        setHouses(houses);
-        setState("loaded");
-      })
-      .catch(() => setState("error"));
-  }, []);
+export const metadata: Metadata = {
+  title: "Houses",
+  description: "Explore the houses of Hogwarts",
+};
+
+export default async function Page() {
+  trackPageView('houses');
+  const houses: House[] | undefined = await getAllHouses().catch(error => undefined);
 
   return (
     <div className="flex flex-col gap-4 py-8 h-full w-full items-center justify-center ">
@@ -25,13 +22,6 @@ export default function HousesPage() {
         houses.map((house) => (
           <HouseCard house={house} key={`card-${house.name}`} />
         ))}
-
-      {state === "loading" && (
-        <h1 className="text-xl font-bold">Loading houses...</h1>
-      )}
-      {state === "error" && (
-        <h1 className="text-xl font-bold">Error loading houses</h1>
-      )}
     </div>
   );
 }

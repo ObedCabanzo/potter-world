@@ -1,5 +1,5 @@
 import { House } from "../../models/house";
-import { API_HOST } from "./apidata";
+import { API_HOST } from "../../data/environment";
 
 export async function getHouseById(id: string): Promise<House> {
   const response = await fetch(`${API_HOST}/houses/${id}`);
