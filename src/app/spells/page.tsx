@@ -4,7 +4,10 @@ import SpellCard from "../../components/spellCard";
 import { spellService } from "../../lib/api/apiServices";
 
 export const metadata: Metadata = {
-  title: "Spells",
+  title: {
+    default: "Spells",
+    template: "%s - Spells",
+  },
   description: "Explore the spells",
 };
 
@@ -20,9 +23,16 @@ export default async function Page() {
       <div className="flex flex-col items-center justify-center gap-4">
         {spells &&
           spells.map((spell) => (
-            <SpellCard spell={spell} key={`card-${spell.id}`} />
+            <SpellCard spell={spell} key={`card-${spell.spell}`} />
           ))}
       </div>
+      {!spells && (
+        <div className="flex flex-col items-center ">
+        <h1 className="text-xl font-bold">Something happened!!!</h1>
+        <h1 className="text-xl font-bold">No spells found</h1>
+        <h2 className="text-lg font-semibold mt-2">Please, come back later</h2>
+      </div>
+      )}
     </div>
   );
 }

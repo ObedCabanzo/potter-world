@@ -4,35 +4,26 @@ import Trait from "./trait";
 
 export class House {
   constructor(
-    public id: string,
-    public name: string,
-    public houseColours: string,
+    public house: string,
+    public emoji: string,
     public founder: string,
+    public colors: string[],
     public animal: string,
-    public element: string,
-    public ghost: string,
-    public commonRoom: string,
-    public heads: Head[],
-    public traits: Trait[]
+    public index: number
   ) {}
 
   static fromJSON(data: any): House {
-    const heads =
-      data.heads?.map((headData: any) => Head.fromJSON(headData)) || [];
-    const traits =
-      data.traits?.map((traitData: any) => Trait.fromJSON(traitData)) || [];
-
     return new House(
-      data.id,
-      data.name,
-      data.houseColours,
+      data.house,
+      data.emoji,
       data.founder,
+      data.colors,
       data.animal,
-      data.element,
-      data.ghost,
-      data.commonRoom,
-      heads,
-      traits
+      data.index
     );
+  }
+
+  static fromJSONArray(data: any[]): House[] {
+    return data.map((house) => House.fromJSON(house));
   }
 }

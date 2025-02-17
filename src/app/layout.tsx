@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/navbar";
 import { initializeAmplitude } from "@/analytics/amplitude";
 import ClientInitializer from "@/analytics/ClientInitializer";
+import Footer from "../components/footer";
 
 const InriaSans = Inria_Sans({
   variable: "--font-inria-sans",
@@ -11,12 +12,8 @@ const InriaSans = Inria_Sans({
   weight: ["400", "700"],
 });
 
-
 export const metadata: Metadata = {
-  title: {
-    default: "Potter's World",
-    template: "%s - Potter's World",
-  },
+  title: "Potter's World"
 };
 
 export default function RootLayout({
@@ -27,13 +24,12 @@ export default function RootLayout({
   initializeAmplitude();
   return (
     <html lang="en">
-      <body
-        className={`${InriaSans.variable}  antialiased relative`}
-      >
-        <ClientInitializer />
-        <Navbar/>
-        {children}
-      </body>
+        <body className={`${InriaSans.variable}  antialiased relative`}>
+          <ClientInitializer />
+          <Navbar />
+          {children}
+          <Footer />
+        </body>
     </html>
   );
 }
