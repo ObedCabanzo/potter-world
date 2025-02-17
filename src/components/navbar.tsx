@@ -3,7 +3,7 @@ import CustomButton from "./customButton";
 
 export default function Navbar() {
   return (
-    <div className="bg-white text-black font-bold flex py-4 px-8">
+    <div className="bg-white text-black font-bold flex flex-wrap justify-center sm:justify-start py-4 px-8 sticky top-0 z-50">
       {Object.keys(linksMap).map((key) => (
         <CustomButton
           key={key}

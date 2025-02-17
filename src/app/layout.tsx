@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${InriaSans.variable}  antialiased`}
+        className={`${InriaSans.variable}  antialiased relative`}
       >
         <ClientInitializer />
         <Navbar/>
