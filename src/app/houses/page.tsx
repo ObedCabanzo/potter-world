@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { House } from "../../models/house";
 import HouseCard from "../../components/houseCard";
-import { getAllHouses } from "../../lib/api/houseServices";
-import { trackPageView } from "../../analytics/events";
+import { houseService } from "../../lib/api/apiServices";
 
 
 export const metadata: Metadata = {
@@ -11,8 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  trackPageView('houses');
-  const houses: House[] | undefined = await getAllHouses().catch(error => undefined);
+  const houses: House[] | undefined = await houseService.getAll().catch(error => undefined);
 
   return (
     <div className="flex flex-col gap-4 py-8 h-full w-full items-center justify-center ">

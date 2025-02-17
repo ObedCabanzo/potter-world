@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { House } from "../../../models/house";
-import { getHouseById } from "../../../lib/api/houseServices";
-import { trackPageView } from "@/analytics/events";
+import { houseService } from "../../../lib/api/apiServices";
 
 export async function generateMetadata({
   params,
@@ -10,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   try {
     const param = await params;
-    const house = await getHouseById(param.id);
+    const house = await houseService.getById(param.id);
     if (house && house.name) {
       return {
         title: house.name,
@@ -33,8 +32,7 @@ export default async function HousePage({
   params: { id: string };
 }) {
   const param = await params;
-  const house: House | undefined = await getHouseById(param.id).catch(error => undefined);
-  house ? trackPageView(house.name) : trackPageView("Not found");
+  const house: House | undefined = await houseService.getById(param.id).catch(error => undefined);
  
   return (
     <>

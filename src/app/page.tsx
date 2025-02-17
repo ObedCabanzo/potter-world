@@ -1,8 +1,6 @@
 import {links } from "../data/links";
 import CustomButton from "../components/customButton";
-import { trackPageView } from "@/analytics/events";
 export default function Home() {
-  trackPageView("home");
   return (
     <div className="flex flex-col items-center justify-center">
       <h1 className="text-3xl font-bold text-center">
