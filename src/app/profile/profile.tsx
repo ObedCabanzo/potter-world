@@ -3,8 +3,8 @@ import { SessionData } from "@auth0/nextjs-auth0/types";
 import { House } from "../../models/house";
 import { getFavorite, setUserFavoriteHouse } from "../../lib/api/apiSupabase";
 import { useState, useEffect } from "react";
-import { setUserProperties } from "@/analytics/amplitude";
-import { trackPreferenceChanged } from "@/analytics/events";
+import { setUserProperties } from "../../analytics/amplitude";
+import { trackPreferenceChanged } from "../../analytics/events";
 
 export default function Profile({
   session,

@@ -1,5 +1,5 @@
 "use client";
-import { trackUserLogout } from "@/analytics/events";
+import { trackUserLogout } from "../analytics/events";
 import { resetUser } from "../analytics/amplitude";
 import { SessionData } from "@auth0/nextjs-auth0/types";
 

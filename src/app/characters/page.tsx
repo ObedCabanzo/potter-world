@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Character } from "../../models/character";
 import CustomButton from "../../components/customButton";
 import { characterService } from "../../lib/api/apiServices";
-import { linksMap } from "@/data/links";
+import { linksMap } from "../../data/links";
 
 export const metadata: Metadata = {
   title: {
