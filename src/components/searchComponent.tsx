@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react";
 import { trackSearch } from "../analytics/events";
-import { set } from "lodash";
 import { SessionData } from "@auth0/nextjs-auth0/types";
 
 export default function SearchBar({session}: {session: SessionData | null}) {

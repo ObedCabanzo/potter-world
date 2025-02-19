@@ -1,6 +1,5 @@
 import { AMPLITUDE_API_KEY } from "../data/environment";
 import * as amplitude from "@amplitude/analytics-browser";
-import { auth0 } from "../lib/auth0";
 import { SessionData } from "@auth0/nextjs-auth0/types";
 
 const configurations = {

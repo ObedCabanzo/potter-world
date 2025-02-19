@@ -11,24 +11,25 @@ async function getBookById(id: string): Promise<Book | undefined> {
   return books?.find((b) => b.index === stringToNumber(id));
 }
 
+type Props = Promise<{ id: string }>;
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Props;
 }): Promise<Metadata> {
-  const id = (await params).id
+  const id = (await params).id;
   const book = await getBookById(id);
   return {
-    title: book   ? `${book.title} - Books` : "Not Found - Books",
+    title: book ? `${book.title} - Books` : "Not Found - Books",
   };
 }
 
 export default async function LoadingPage({
   params,
 }: {
-  params: { id: string };
+  params: Props;
 }) {
-  const id = (await params).id
+  const id = (await params).id;
   const book = await getBookById(id);
 
   return (

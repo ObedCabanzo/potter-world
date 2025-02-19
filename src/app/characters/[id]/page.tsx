@@ -4,6 +4,9 @@ import CharacterCard from "../../../components/characterCard";
 import { stringToNumber } from "../../../utils/utils";
 import { Metadata } from "next";
 
+type Props = Promise<{ id: string }>;
+
+
 async function getcharacterById(id: string): Promise<Character | undefined> {
   const characters: Character[] | undefined = await characterService
     .getAll()
@@ -14,28 +17,34 @@ async function getcharacterById(id: string): Promise<Character | undefined> {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Props;
 }): Promise<Metadata> {
-  const id = (await params).id
+  const id = (await params).id;
   const character = await getcharacterById(id);
   return {
-    title: character   ? `${character.fullName} - Characters` : "Not Found - Characters",
+    title: character
+      ? `${character.fullName} - Characters`
+      : "Not Found - Characters",
   };
 }
 
 export default async function LoadingPage({
   params,
 }: {
-  params: { id: string };
+  params: Props;
 }) {
-  const id = (await params).id
+
+  const id = (await params).id;
   const character = await getcharacterById(id);
 
   return (
     <div className="flex flex-col gap-4 py-8 h-full w-full items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-4">
         {character ? (
-          <CharacterCard character={character} key={`card-${character.index}`} />
+          <CharacterCard
+            character={character}
+            key={`card-${character.index}`}
+          />
         ) : (
           <div className="flex flex-col items-center">
             <h1 className="text-xl font-bold">Something happened!!!</h1>

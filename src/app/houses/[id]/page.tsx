@@ -5,6 +5,7 @@ import { stringToNumber } from "../../../utils/utils";
 import { Metadata } from "next";
 import {auth0} from "../../../lib/auth0";
 
+type Props = Promise<{ id: string }>;
 async function getHouseById(id: string): Promise<House | undefined> {
   const houses: House[] | undefined = await houseService
     .getAll()
@@ -15,7 +16,7 @@ async function getHouseById(id: string): Promise<House | undefined> {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Props;
 }): Promise<Metadata> {
   const id = (await params).id
   const house = await getHouseById(id);
@@ -27,7 +28,7 @@ export async function generateMetadata({
 export default async function LoadingPage({
   params,
 }: {
-  params: { id: string };
+  params: Props;
 }) {
   const id = (await params).id
   const house = await getHouseById(id);

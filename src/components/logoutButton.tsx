@@ -4,7 +4,7 @@ import { resetUser } from "../analytics/amplitude";
 import { SessionData } from "@auth0/nextjs-auth0/types";
 
 export default function LogoutButton({ session }: { session: SessionData }) {
-  const handleLogout = (e: any) => {
+  const handleLogout = () => {
     trackUserLogout(session, session.user.sub);
     resetUser();
   };

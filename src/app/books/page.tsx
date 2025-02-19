@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const books: Book[] | undefined = await bookService
     .getAll()
-    .catch((error) => undefined);
+    .catch((_) => undefined);
 
   return (
     <div className="flex flex-col  py-8 h-full w-full items-center justify-center ">
