@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inria_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar";
-import { initializeAmplitude } from "@/analytics/amplitude";
-import ClientInitializer from "@/analytics/ClientInitializer";
+import { initializeAmplitude } from "../analytics/amplitude";
+import ClientInitializer from "../analytics/ClientInitializer";
 import Footer from "../components/footer";
 
 const InriaSans = Inria_Sans({
