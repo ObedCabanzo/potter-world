@@ -19,3 +19,19 @@ export const trackUserLogout = (userId: string) => {
 export const trackButtonClick = (buttonName: string) => {
   trackEvent('Button Click', { button: buttonName });
 };
+
+export const trackPreferenceChanged = (preference: string) => {
+  trackEvent('Favorite house changed', { preference });
+}
+
+export const trackSearch = (searchTerm: string) => {
+  trackEvent('Search performed', { searchTerm });
+}
+
+export const trackFollow = (socialMedia: string) => {
+  trackEvent('User Followed', { socialMedia });
+}
+
+export const trackScrollList = (listName: string) => {
+  trackEvent('Scrolled list', { listName });
+}

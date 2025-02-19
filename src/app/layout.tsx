@@ -13,7 +13,7 @@ const InriaSans = Inria_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Potter's World"
+  title: "Potter's World",
 };
 
 export default function RootLayout({
@@ -24,12 +24,12 @@ export default function RootLayout({
   initializeAmplitude();
   return (
     <html lang="en">
-        <body className={`${InriaSans.variable}  antialiased relative`}>
-          <ClientInitializer />
-          <Navbar />
-          {children}
-          <Footer />
-        </body>
+      <body className={`${InriaSans.variable} relative `}>
+        <ClientInitializer />
+        <Navbar />
+        <div className="pb-16">{children}</div>
+        <Footer />
+      </body>
     </html>
   );
 }
