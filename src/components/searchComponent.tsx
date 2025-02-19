@@ -2,14 +2,15 @@
 import { useState } from "react";
 import { trackSearch } from "../analytics/events";
 import { set } from "lodash";
+import { SessionData } from "@auth0/nextjs-auth0/types";
 
-export default function SearchBar() {
+export default function SearchBar({session}: {session: SessionData | null}) {
   const [query, setQuery] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      trackSearch(query.trim());
+      trackSearch(session,query.trim());
       setQuery("");
     }
   };

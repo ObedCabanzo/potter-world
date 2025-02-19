@@ -2,7 +2,8 @@ import { Metadata } from "next";
 import { House } from "../../models/house";
 import { houseService } from "../../lib/api/apiServices";
 import CustomButton from "../../components/customButton";
-import { linksMap } from "@/data/links";
+import { linksMap } from "../../data/links";
+import { auth0 } from "../../lib/auth0";
 
 export const metadata: Metadata = {
   title: {

@@ -1,8 +1,6 @@
 import { Auth0Client } from "@auth0/nextjs-auth0/server";
 import { NextResponse } from "next/server";
 import { trackUserLogin, trackUserSignup } from "../analytics/events";
-import { setUserId } from "../analytics/amplitude";
-import { getFavorite } from "./api/apiSupabase";
 
 export const auth0 = new Auth0Client({
   async onCallback(error, context, session) {
@@ -13,16 +11,12 @@ export const auth0 = new Auth0Client({
     }
 
     if (session) {
-      
-      const favorite = await getFavorite(session.user.sub);
-      setUserId(session.user.sub);
       const is_new = new Date(session.user["http://potter_app/is_new"]);
-      
       if(!is_new) {
-        trackUserLogin(session.user.sub);
+        trackUserLogin(session, session.user.sub);
       } 
       else {
-        trackUserSignup(session.user.sub);
+        trackUserSignup(session, session.user.sub);
         console.log("new user")
       }
     }

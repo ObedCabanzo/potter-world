@@ -2,10 +2,11 @@
 import { House } from ".././models/house";
 import { socialMedia } from "../utils/utils";
 import { trackFollow } from "../analytics/events";
+import { SessionData } from "@auth0/nextjs-auth0/types";
 
-export default function HouseCard({ house }: { house: House }) {
+export default function HouseCard({session, house }: {session: SessionData | null , house: House }) {
   const handleClick = (social: string) => {
-    trackFollow(social);
+    trackFollow(session, social);
   };
   return (
     <div className="flex flex-col gap-2 items-center">

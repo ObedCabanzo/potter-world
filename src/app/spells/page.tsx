@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Spell } from "../../models/spell";
 import SpellsList from "./spellsList";
 import { spellService } from "../../lib/api/apiServices";
-import { usePageEnd } from "@/hooks/usePageEnd";
+import { auth0 } from "../../lib/auth0";
 
 export const metadata: Metadata = {
   title: {
@@ -14,6 +14,8 @@ export const metadata: Metadata = {
 
 
 export default async function Page() {
+
+  const session = await auth0.getSession();
   const spells: Spell[] | undefined = await spellService
     .getAll()
     .catch((error) => undefined);
@@ -24,7 +26,7 @@ export default async function Page() {
       <h1 className="text-xl font-bold">Spells</h1>
 
       {
-        spells && <SpellsList spells={spells} />
+        spells && <SpellsList spells={spells} session={session} />
       }
 
       {!spells && (

@@ -19,13 +19,13 @@ export default function Profile({
     if (house.index === selectedHouse?.index) {
       setSetelectedHouse(null);
       setUserFavoriteHouse(session.user.sub, null);
-      setUserProperties({ favoriteHouse: "No preference" });
-      trackPreferenceChanged("No preference");
+      setUserProperties(session.user.sub, { favoriteHouse: "No preference" });
+      trackPreferenceChanged(session, "No preference");
     } else {
       setSetelectedHouse(house);
       setUserFavoriteHouse(session.user.sub, house.index);
-      setUserProperties({ favoriteHouse: house.house });
-      trackPreferenceChanged(house.house);
+      setUserProperties(session.user.sub, { favoriteHouse: house.house });
+      trackPreferenceChanged(session, house.house);
     }
   };
 

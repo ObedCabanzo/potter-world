@@ -1,5 +1,7 @@
 import { AMPLITUDE_API_KEY } from "../data/environment";
 import * as amplitude from "@amplitude/analytics-browser";
+import { auth0 } from "../lib/auth0";
+import { SessionData } from "@auth0/nextjs-auth0/types";
 
 const configurations = {
   defaultTracking: {
@@ -8,7 +10,7 @@ const configurations = {
   autocapture: {
     pageViews: true,
     session: true,
-    formInteractions: false, 
+    formInteractions: false,
   },
 };
 
@@ -23,18 +25,24 @@ export const initializeAmplitude = () => {
 };
 
 export const trackEvent = (
+  session: SessionData | null,
   eventName: string,
   properties: Record<string, any> = {}
 ) => {
   if (typeof window !== "undefined") {
+    if (session) {
+      amplitude.setUserId(session.user.sub);
+    }
     amplitude.track(eventName, properties);
   }
 };
 
 export const setUserProperties = (
+  userId: string,
   properties: Record<string, any>
 ) => {
   if (typeof window !== "undefined") {
+    amplitude.setUserId(userId);
     const identify = new amplitude.Identify();
     Object.keys(properties).forEach((key) => {
       identify.set(key, properties[key]);

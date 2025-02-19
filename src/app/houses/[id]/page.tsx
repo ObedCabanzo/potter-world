@@ -3,6 +3,7 @@ import { houseService } from "../../../lib/api/apiServices";
 import HouseCard from "../../../components/houseCard";
 import { stringToNumber } from "../../../utils/utils";
 import { Metadata } from "next";
+import {auth0} from "../../../lib/auth0";
 
 async function getHouseById(id: string): Promise<House | undefined> {
   const houses: House[] | undefined = await houseService
@@ -30,12 +31,13 @@ export default async function LoadingPage({
 }) {
   const id = (await params).id
   const house = await getHouseById(id);
+  const session = await auth0.getSession();
 
   return (
     <div className="flex flex-col gap-4 py-8 h-full w-full items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-4">
         {house ? (
-          <HouseCard house={house} key={`card-${house.index}`} />
+          <HouseCard house={house} session={session} key={`card-${house.index}`} />
         ) : (
           <div className="flex flex-col items-center">
             <h1 className="text-xl font-bold">Something happened!!!</h1>
