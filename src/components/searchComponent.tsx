@@ -18,11 +18,11 @@ export default function SearchBar({session}: {session: SessionData | null}) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center gap-2 w-fit "
+      className="flex items-center flex-wrap sm:flex-nowrap gap-2 w-full sm:w-fit "
     >
       <input
         type="text"
-        placeholder="Buscar casas, personajes, libros..."
+        placeholder="Search for houses, books, characters..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="flex-1 outline-none px-4 py-2 w-96 border-2 border-black rounded-lg"
